@@ -1,5 +1,5 @@
-const { InstanceBase, InstanceStatus, Regex, combineRgb, runEntrypoint } = require('@companion-module/base')
-const { WebSocketServer } = require('ws')
+import { InstanceBase, InstanceStatus, Regex, combineRgb } from '@companion-module/base'
+import { WebSocketServer } from 'ws'
 
 // Farben
 const C_WHITE = combineRgb(255, 255, 255)
@@ -866,4 +866,5 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 	}
 }
 
-runEntrypoint(VideoTaxiSpeechInstance, [])
+export default VideoTaxiSpeechInstance
+export const UpgradeScripts = []
