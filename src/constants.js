@@ -10,6 +10,14 @@ export const COLORS = {
 	dark: combineRgb(24, 22, 18),
 }
 
+// Exact colors from the shipped Stream Deck layout, so the icon presets match it.
+export const LAYOUT = {
+	bg: 1380878, // button background
+	activeBg: 14723387, // highlighted (active) state — gold
+	activeText: 2301979, // text on the active state — dark
+	liveBg: 11552826, // "LIVE" indicator background while sending — red
+}
+
 export const DEFAULT_PORT = 8465
 export const DEFAULT_HOST = '127.0.0.1'
 export const HEARTBEAT_MS = 20000

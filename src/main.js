@@ -252,6 +252,10 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 			} else if (msg.type === 'sessions') {
 				this.sessions = (Array.isArray(msg.list) ? msg.list : []).filter((e) => e && e.id != null)
 				this.updateActions()
+				// Also refresh the session feedback choices and the session_name variable,
+				// which both depend on this list.
+				this.updateFeedbacks()
+				this.publish()
 			} else if (msg.type === 'viewerLanguages') {
 				this.viewerLanguages = (Array.isArray(msg.list) ? msg.list : []).filter((e) => e && e.code)
 				this.updateActions()
@@ -260,6 +264,8 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 				this.displays = (Array.isArray(msg.list) ? msg.list : []).filter((e) => e && e.id != null)
 				this.updateActions()
 				this.updateFeedbacks()
+				// Refresh the display_name variable, which resolves against this list.
+				this.publish()
 			}
 		} catch (err) {
 			this.log('error', `Failed to handle message: ${err?.message || err}`)

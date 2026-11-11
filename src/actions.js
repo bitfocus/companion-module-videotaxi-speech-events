@@ -45,6 +45,39 @@ export function UpdateActions(self) {
 			],
 			callback: (ev) => self.sendCmd('setLanguage', ev.options.lang),
 		},
+		set_language_and_restart: {
+			name: 'Select input language and restart sending',
+			description:
+				'Stops sending, switches the input language, then starts again — with a short pause so the ' +
+				'extension can apply the change. Lets one button do what the layout buttons do in a single step.',
+			options: [
+				{
+					type: 'dropdown',
+					id: 'lang',
+					label: 'Language',
+					default: langDefault,
+					choices: self.langChoices(),
+					allowCustom: true,
+				},
+				{
+					type: 'number',
+					id: 'delay',
+					label: 'Pause before and after (ms)',
+					default: 500,
+					min: 0,
+					max: 10000,
+				},
+			],
+			callback: async (ev) => {
+				const delay = Math.max(0, Math.min(10000, Number(ev.options.delay) || 0))
+				const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+				self.sendCmd('sendStop')
+				if (delay) await wait(delay)
+				self.sendCmd('setLanguage', ev.options.lang)
+				if (delay) await wait(delay)
+				self.sendCmd('sendStart')
+			},
+		},
 		set_session: {
 			name: 'Select session (delivery)',
 			options: [
