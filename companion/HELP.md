@@ -15,4 +15,4 @@ Companion module for the Chrome extension **"VIDEO.TAXI - SPEECH EVENTS Controll
 - **Variables** such as `sending`, `language`, `session_name`, `zoom`, `display_name`, `fullscreen`.
 - **Presets** for the common buttons.
 
-The connection label defaults to `VIDEO_TAXI_Speech`; preset variable texts use this label.
+Preset button texts reference the connection's own label, so they keep working after you rename the connection.

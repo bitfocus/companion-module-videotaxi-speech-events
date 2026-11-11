@@ -4,7 +4,6 @@ export function UpdateFeedbacks(self) {
 	const C_WHITE = COLORS.white
 	const C_GREEN = COLORS.green
 	const C_RED = COLORS.red
-	const C_DARK = COLORS.dark
 	const langDefault = self.languages[0]?.code || 'de-DE'
 
 	self.setFeedbackDefinitions({
@@ -25,7 +24,8 @@ export function UpdateFeedbacks(self) {
 		ext_connected: {
 			type: 'boolean',
 			name: 'Extension connected',
-			defaultStyle: { bgcolor: C_DARK, color: C_WHITE },
+			// Green like the other "on" feedbacks; a dark default is invisible on a black button.
+			defaultStyle: { bgcolor: C_GREEN, color: C_WHITE },
 			options: [],
 			callback: () => self.state.connected === true,
 		},
