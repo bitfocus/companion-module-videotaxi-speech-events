@@ -39,4 +39,7 @@ export const FEEDBACK_DEPS = {
 	info_on: 'info',
 	display_is: 'display',
 	fullscreen_open: 'fullscreen',
+	output_enabled: 'output_enabled',
+	output_running: 'output_running',
+	output_problem: 'output_ok',
 }
