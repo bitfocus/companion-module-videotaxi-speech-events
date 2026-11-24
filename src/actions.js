@@ -198,5 +198,15 @@ export function UpdateActions(self) {
 			options: [sess()],
 			callback: (ev) => self.sendCmdFields('toggleFullscreen', { session: ev.options.session }),
 		},
+
+		// Output to vMix / OBS (extension 1.13+): captions to vMix titles, OBS text
+		// sources or the OBS overlay. Runs together with sending while enabled.
+		output_set: {
+			name: 'Output to vMix/OBS: on/off',
+			options: [{ type: 'dropdown', id: 'value', label: 'State', default: 'toggle', choices: ONOFF, disableAutoExpression: true }],
+			callback: (ev) =>
+				self.sendCmd({ true: 'outputOn', false: 'outputOff' }[ev.options.value] || 'outputToggle'),
+		},
+		output_clear: { name: 'Output to vMix/OBS: clear captions now', ...cmd('outputClear') },
 	})
 }

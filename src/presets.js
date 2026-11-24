@@ -169,6 +169,29 @@ export function UpdatePresets(self) {
 		zoom_in: tile('Browser zoom +', 'ZOOM', ICONS.zoom_in, 'zoom_next', { session: '' }, [], { size: '24' }),
 		zoom_out: tile('Browser zoom −', 'ZOOM', ICONS.zoom_out, 'zoom_prev', { session: '' }, [], { size: '24' }),
 
+		// --- Output to vMix / OBS (extension 1.13+) ---
+		output_toggle: tile(
+			'Output to vMix/OBS on/off (gold = on, red = target not reachable)',
+			'OUTPUT\nvMix/OBS',
+			null,
+			'output_set',
+			{ value: 'toggle' },
+			[
+				{ feedbackId: 'output_enabled', options: {}, style: active() },
+				{ feedbackId: 'output_problem', options: {}, style: { bgcolor: LAYOUT.liveBg, color: C_WHITE } },
+			],
+			{ alignment: 'center:center', size: '20' },
+		),
+		output_clear: tile(
+			'Clear captions in vMix/OBS now',
+			'CLEAR\nCAPTIONS',
+			null,
+			'output_clear',
+			{},
+			[],
+			{ alignment: 'center:center', size: '20' },
+		),
+
 		// --- Monitor ---
 		display_cycle: tile(
 			'Previous monitor (shows current)',
@@ -200,6 +223,7 @@ export function UpdatePresets(self) {
 		},
 		{ id: 'zoom', name: 'Zoom', definitions: ['zoom_in', 'zoom_out'] },
 		{ id: 'monitor', name: 'Monitor', definitions: ['display_cycle'] },
+		{ id: 'output', name: 'Output to vMix/OBS', definitions: ['output_toggle', 'output_clear'] },
 	]
 
 	self.setPresetDefinitions(structure, presets)

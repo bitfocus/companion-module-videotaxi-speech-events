@@ -18,6 +18,10 @@ export function UpdateVariableDefinitions(self) {
 		display: { name: 'Fullscreen monitor (ID)' },
 		display_name: { name: 'Fullscreen monitor (name)' },
 		fullscreen: { name: 'Transcript fullscreen open (true/false)' },
+		output_enabled: { name: 'Output to vMix/OBS enabled (true/false)' },
+		output_running: { name: 'Output to vMix/OBS running (true/false)' },
+		output_ok: { name: 'Output to vMix/OBS: all targets reachable (true/false)' },
+		output_target: { name: 'Output target (vmix/obs/obsov)' },
 	})
 	self.publish()
 }

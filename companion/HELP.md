@@ -10,9 +10,9 @@ Companion module for the Chrome extension **"VIDEO.TAXI - SPEECH EVENTS Controll
 
 ### Features
 
-- **Actions:** start/stop sending, start/stop toggle, next/previous input language, direct language choice, session selection and cycling, fullscreen open/close/toggle, monitor selection and cycling, browser zoom, and the fullscreen viewer options (audio translation, original language, QR code, event info link, text direction) per session.
-- **Feedbacks** for every state (sending, error, connection, language, session, viewer options, monitor, fullscreen open).
-- **Variables** such as `sending`, `language`, `session_name`, `zoom`, `display_name`, `fullscreen`.
+- **Actions:** start/stop sending, start/stop toggle, next/previous input language, direct language choice, session selection and cycling, fullscreen open/close/toggle, monitor selection and cycling, browser zoom, output to vMix/OBS on/off and clear captions (extension 1.13 or newer), and the fullscreen viewer options (audio translation, original language, QR code, event info link, text direction) per session.
+- **Feedbacks** for every state (sending, error, connection, language, session, viewer options, monitor, fullscreen open, output to vMix/OBS enabled/running/target not reachable).
+- **Variables** such as `sending`, `language`, `session_name`, `zoom`, `display_name`, `fullscreen`, `output_enabled`, `output_running`, `output_ok`, `output_target`.
 - **Presets** for the common buttons.
 
 Preset button texts reference the connection's own label, so they keep working after you rename the connection.

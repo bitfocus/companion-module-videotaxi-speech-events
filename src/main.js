@@ -34,6 +34,10 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 			showInfoButton: true,
 			display: '',
 			fullscreen: false,
+			outputEnabled: false,
+			outputRunning: false,
+			outputOk: true,
+			outputTarget: 'vmix',
 			connected: false,
 		}
 	}
@@ -241,6 +245,10 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 				if ('showInfoButton' in msg) this.state.showInfoButton = !!msg.showInfoButton
 				if ('display' in msg) this.state.display = String(msg.display ?? '')
 				if ('fullscreen' in msg) this.state.fullscreen = !!msg.fullscreen
+				if ('outputEnabled' in msg) this.state.outputEnabled = !!msg.outputEnabled
+				if ('outputRunning' in msg) this.state.outputRunning = !!msg.outputRunning
+				if ('outputOk' in msg) this.state.outputOk = msg.outputOk !== false
+				if ('outputTarget' in msg) this.state.outputTarget = String(msg.outputTarget ?? 'vmix')
 				this.publish()
 			} else if (msg.type === 'languages') {
 				// Keep only valid { code } entries so a stray null cannot crash a choice builder.
@@ -291,6 +299,10 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 			display: this.state.display,
 			display_name: this.state.display ? this.nameFor(this.displays, this.state.display) : 'Current screen',
 			fullscreen: this.state.fullscreen,
+			output_enabled: this.state.outputEnabled,
+			output_running: this.state.outputRunning,
+			output_ok: this.state.outputOk,
+			output_target: this.state.outputTarget,
 			connected: this.state.connected,
 		}
 
@@ -310,6 +322,8 @@ class VideoTaxiSpeechInstance extends InstanceBase {
 		for (const [feedbackId, varKey] of Object.entries(FEEDBACK_DEPS)) {
 			if (varKey in changed) feedbacks.push(feedbackId)
 		}
+		// output_problem depends on two variables (enabled and ok).
+		if ('output_enabled' in changed && !feedbacks.includes('output_problem')) feedbacks.push('output_problem')
 		if (feedbacks.length) this.checkFeedbacks(...feedbacks)
 	}
 

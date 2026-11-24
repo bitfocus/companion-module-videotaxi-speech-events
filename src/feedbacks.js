@@ -173,5 +173,26 @@ export function UpdateFeedbacks(self) {
 			options: [],
 			callback: () => self.state.fullscreen === true,
 		},
+		output_enabled: {
+			type: 'boolean',
+			name: 'Output to vMix/OBS enabled',
+			defaultStyle: { bgcolor: C_GREEN, color: C_WHITE },
+			options: [],
+			callback: () => self.state.outputEnabled === true,
+		},
+		output_running: {
+			type: 'boolean',
+			name: 'Output to vMix/OBS running (captions are being sent)',
+			defaultStyle: { bgcolor: C_GREEN, color: C_WHITE },
+			options: [],
+			callback: () => self.state.outputRunning === true,
+		},
+		output_problem: {
+			type: 'boolean',
+			name: 'Output to vMix/OBS: a target is not reachable',
+			defaultStyle: { bgcolor: C_RED, color: C_WHITE },
+			options: [],
+			callback: () => self.state.outputEnabled === true && self.state.outputOk === false,
+		},
 	})
 }
